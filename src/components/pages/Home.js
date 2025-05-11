@@ -1,10 +1,8 @@
 import React from 'react'
-
+import About from './About'
 const Home = () => {
   return (
-    <div>
-      <p>Aman singh</p>
-    </div>
+    <About/>
   )
 }
 

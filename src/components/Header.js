@@ -12,10 +12,14 @@ import {
   Drawer,
   Divider,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Avatar
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, NavLink } from 'react-router-dom';
+import mainLogo from '../assets/logo/mainLogo.jpg';
+import Swal from 'sweetalert2';
+
 
 const navItems = [
   { label: 'Home', url: '/home' },
@@ -29,40 +33,41 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
+  const [swalState,setswalState]=React.useState(false)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const logohandleclick = () => {
+  if (!swalState) {
+    Swal.fire({
+      imageUrl: mainLogo,
+      imageAlt: 'mainlogo',
+      imageWidth: 300,
+      imageHeight: 300,
+      showConfirmButton: false,
+      background: 'transparent',
+      transition: '0.5s ease-in-out',
+      backdrop: true,
+      didClose: () => {
+        setswalState(false); // Automatically reset state when popup closes
+      }
+    });
+    setswalState(true);
+  } else {
+    Swal.close(); // ← Add parentheses here
+    setswalState(false);
+  }
+};
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250 }}>
-      <Typography 
-        variant="h4"
-        component={Link}
-        to="/"
-        sx={{
-          my: 2,
-          fontWeight: 700,
-          color: 'text.primary',
-          textDecoration: 'none',
-          fontFamily: '"Playfair Display", serif',
-          background: 'linear-gradient(to right, #434343, #000000)',
-          WebkitBackgroundClip: 'text',
-          backgroundClip: 'text',
-          textFillColor: 'transparent',
-          '&:hover': {
-            background: 'linear-gradient(to right, #000000, #434343)',
-          }
-        }}
-      >
-        Trinetra Real Estate
-      </Typography>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250 ,mt:2}}>
+      
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item.url} disablePadding>
             <ListItemButton 
-              component={NavLink} 
+              component={NavLink}       
               to={item.url}
               sx={{ 
                 textAlign: 'left',
@@ -83,7 +88,7 @@ const Header = () => {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
-          position="fixed" // Changed from 'static' to 'fixed'
+          position="fixed" 
           sx={{
             backgroundColor: 'rgb(255 255 255 / var(--tw-bg-opacity, 1))',
             px: 2,
@@ -99,20 +104,35 @@ const Header = () => {
               flexWrap: 'wrap',
             }}
           >
+           
             {/* Left - Brand Name */}
+          <Box 
+            component={Link} 
+            to="/" 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              textDecoration: 'none' 
+            }}
+          >
+            <Avatar 
+              onClick={logohandleclick}
+              alt="Logo" 
+              src={mainLogo}
+              sx={{ width: 32, height: 32, marginRight: 1 }} 
+            />
             <Typography
               variant="h6"
-              component={Link}
-              to="/"
               sx={{ 
                 color: 'black', 
                 fontWeight: 'bold',
-                textDecoration: 'none',
                 fontFamily: '"Playfair Display", serif',
               }}
             >
-              Trinetra Real Estate
+              TrinetraTech
             </Typography>
+          </Box>
+
 
             {/* Right - Menu / Navigation */}
             {isMobile ? (

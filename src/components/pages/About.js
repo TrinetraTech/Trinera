@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import CountUp from 'react-countup';
 import {
   Box,
   Container,
@@ -8,7 +9,8 @@ import {
   CardContent,
   Avatar,
   Button,
-  useTheme
+  useTheme,
+  Divider
 } from '@mui/material';
 import {
   CheckCircle as CheckCircleIcon,
@@ -42,7 +44,7 @@ const About = () => {
       description: "Access to exclusive market data and trends helps you make informed decisions with confidence."
     }
   ];
- 
+
   const stats = [
     { value: 1500, label: "Properties Sold" },
     { value: 950, label: "Happy Clients" },
@@ -82,7 +84,7 @@ const About = () => {
         </Box>
 
         {/* Uniform Feature Cards - Wrapped in Box */}
-        <Box sx={{ 
+        <Box sx={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
@@ -95,9 +97,9 @@ const About = () => {
           }
         }}>
           {features.map((feature, index) => (
-            <Card 
+            <Card
               key={index}
-              sx={{ 
+              sx={{
                 p: 2,
                 height: '250px',
                 width: '250px',
@@ -110,19 +112,19 @@ const About = () => {
                 }
               }}
             >
-              <CardContent sx={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center', 
+              <CardContent sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                 justifyContent: 'center',
                 flexGrow: 1,
                 textAlign: 'center'
               }}>
-                <Avatar 
-                  sx={{ 
-                    bgcolor: 'common.black', 
-                    width: 50, 
-                    height: 50, 
+                <Avatar
+                  sx={{
+                    bgcolor: 'common.black',
+                    width: 50,
+                    height: 50,
                     mb: 2,
                     '& .MuiSvgIcon-root': {
                       fontSize: '1.5rem'
@@ -143,24 +145,34 @@ const About = () => {
         </Box>
 
         {/* Stats Section */}
-        <Box 
-          bgcolor="common.black" 
-          borderRadius={2} 
-          p={{ xs: 4, md: 6 }} 
+        <Box
+          bgcolor="common.black"
+          borderRadius={2}
+          p={{ xs: 4, md: 6 }}
           mb={10}
+          display="flex"
+          justifyContent="center"  // Centers the content horizontally
+          alignItems="center"      // Centers the content vertically
         >
-          <Grid container spacing={4}>
+          <Grid container spacing={15}>
             {stats.map((stat, index) => (
               <Grid item xs={12} sm={6} lg={3} key={index}>
                 <Box textAlign="center">
-                  <Typography 
-                    variant="h3" 
-                    component="div" 
-                    fontWeight="bold" 
-                    color="common.white" 
+                  <Typography
+                    variant="h3"
+                    component="div"
+                    fontWeight="bold"
+                    color="common.white"
                     mb={1}
+
                   >
-                    {stat.value}+
+                    <CountUp start={0} end={stat.value} duration={5} delay={0}>
+                      {({ countUpRef }) => (
+                        <div>
+                          <span ref={countUpRef}></span>+
+                        </div>
+                      )}
+                    </CountUp>
                   </Typography>
                   <Typography variant="body1" color="grey.400">
                     {stat.label}
@@ -171,6 +183,7 @@ const About = () => {
           </Grid>
         </Box>
 
+
         {/* Process Section */}
         <Box mb={10}>
           <Box textAlign="center" mb={6}>
@@ -178,53 +191,63 @@ const About = () => {
               Our Process
             </Typography>
             <Typography variant="h6" color="text.secondary" maxWidth="sm" mx="auto">
-            We've streamlined the real estate journey to make your experience seamless and stress-free.
+              We've streamlined the real estate journey to make your experience seamless and stress-free.
             </Typography>
           </Box>
 
-          <Grid container spacing={3} sx={{ '& .MuiGrid-item': { display: 'flex' } }}>
+          <Grid container spacing={3} justifyContent="center">
             {processSteps.map((step, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Box 
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box
                   sx={{
-                    p: 3,
-                    flex: 1,
+                    width: 300,
+                    height: 200,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: 'grey.50',
-                    borderRadius: 1,
-                    height: '100%'
+                    justifyContent: 'flex-start',
+                    p: 3,
+                    borderRadius: 2,
+                    textAlign: 'left',
+                    alignItems: 'flex-start'
                   }}
                 >
-                  <Box display="flex" alignItems="center" mb={3}>
-                    <Avatar 
-                      sx={{ 
-                        bgcolor: 'common.black', 
-                        width: 40, 
-                        height: 40, 
-                        mr: 2
+                  <Box sx={{ display: 'flex' }}>
+                    <Avatar
+                      sx={{
+                        bgcolor: 'common.black',
+                        width: 60,
+                        height: 60,
+                        mb: 2,
                       }}
                     >
                       {step.step}
                     </Avatar>
-                    <Typography variant="h6" component="h4" fontWeight="bold">
-                      {step.title}
-                    </Typography>
+                    {index !== 2 && (
+                      <Divider sx={{ borderBottom: '5px solid red', width: '280px', mb: 5, ml: 2 }} />
+                    )}
+
                   </Box>
+                  <Typography variant="h6" component="h4" fontWeight="bold" gutterBottom >
+                    {step.title}
+                  </Typography>
+
                   <Typography variant="body2" color="text.secondary">
                     {step.description}
                   </Typography>
                 </Box>
+
               </Grid>
+
             ))}
           </Grid>
+
         </Box>
 
         {/* CTA */}
         <Box textAlign="center">
-          <Button 
-            variant="contained" 
-            size="large" 
+          <Button
+            variant="contained"
+            size="large"
             href="#contact"
             sx={{
               bgcolor: 'common.black',
@@ -237,7 +260,7 @@ const About = () => {
               }
             }}
           >
-              Schedule a Consultation
+            Schedule a Consultation
           </Button>
         </Box>
       </Container>

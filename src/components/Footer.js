@@ -8,7 +8,7 @@ import {
   Link as MuiLink,
   TextField,
   Button,
-  Card, 
+  Card,
   CardMedia,
   Icon
 } from '@mui/material';
@@ -23,18 +23,18 @@ const Footer = () => {
   // Footer sections data
   const footerSections = [
     {
-      title: 'LuxEstate',
+      title: 'TrinetraTech',
       content: (
         <>
-         <Typography 
-  variant="body2" 
-  color="grey.400" 
-  mb={2}
->
-  Providing exceptional real estate
-  services <br /> with a focus on luxury
-  properties and <br />personalized client experiences.
-</Typography>
+          <Typography
+            variant="body2"
+            color="grey.400"
+            mb={2}
+          >
+            Providing exceptional real estate
+            services <br /> with a focus on luxury
+            properties and <br />personalized client experiences.
+          </Typography>
           <Box display="flex" gap={1}>
             {[Facebook, Twitter, Instagram, LinkedIn].map((SocialIcon, index) => (
               <IconButton key={index} color="inherit" size="small">
@@ -222,7 +222,7 @@ const Footer = () => {
             ))}
           </Grid>
         </Box>
-        
+
         {/* Contact Info */}
         <Box sx={{ px: 12, py: 4, borderTop: '1px solid #2e2e2e' }}>
           <Grid container spacing={4}>
@@ -249,17 +249,19 @@ const Footer = () => {
         </Box>
 
         {/* Footer Bottom */}
-        <Box sx={{ py: 4, mt: 4, borderTop: '1px solid #2e2e2e', px: { xs: 2, md: 6 }, 
-          display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', 
-          justifyContent: 'space-between', rowGap: 2 }}>
-          
+        <Box sx={{
+          py: 4, mt: 4, borderTop: '1px solid #2e2e2e', px: { xs: 2, md: 6 },
+          display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center',
+          justifyContent: 'space-between', rowGap: 2
+        }}>
+
           <Typography variant="body2" sx={{ color: '#B0B0B0', fontSize: 14, textAlign: 'left' }}>
             &copy; 2023 LuxEstate. All rights reserved.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-end' } }}>
             {footerLinks.map((link, index) => (
-              <MuiLink key={index} href={link.href} underline="none" 
+              <MuiLink key={index} href={link.href} underline="none"
                 sx={{ color: '#B0B0B0', fontSize: 14, '&:hover': { color: 'white' } }}>
                 {link.text}
               </MuiLink>

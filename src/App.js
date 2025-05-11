@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        
+        <Route path="/home" element={<Home />} />
         {/* Optional: Add a 404 page for unmatched routes */}
         <Route path="*" element={<Home />} />
       </Routes>
