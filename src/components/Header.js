@@ -13,8 +13,9 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
-  Avatar
+  Avatar,
 } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, NavLink } from 'react-router-dom';
 import mainLogo from '../assets/logo/mainLogo.jpg';
@@ -33,43 +34,43 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [swalState,setswalState]=React.useState(false)
+  const [swalState, setswalState] = React.useState(false)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
   const logohandleclick = () => {
-  if (!swalState) {
-    Swal.fire({
-      imageUrl: mainLogo,
-      imageAlt: 'mainlogo',
-      imageWidth: 300,
-      imageHeight: 300,
-      showConfirmButton: false,
-      background: 'transparent',
-      transition: '0.5s ease-in-out',
-      backdrop: true,
-      didClose: () => {
-        setswalState(false); // Automatically reset state when popup closes
-      }
-    });
-    setswalState(true);
-  } else {
-    Swal.close(); // ← Add parentheses here
-    setswalState(false);
-  }
-};
+    if (!swalState) {
+      Swal.fire({
+        imageUrl: mainLogo,
+        imageAlt: 'mainlogo',
+        imageWidth: 300,
+        imageHeight: 300,
+        showConfirmButton: false,
+        background: 'transparent',
+        transition: '0.5s ease-in-out',
+        backdrop: true,
+        didClose: () => {
+          setswalState(false); // Automatically reset state when popup closes
+        }
+      });
+      setswalState(true);
+    } else {
+      Swal.close(); // ← Add parentheses here
+      setswalState(false);
+    }
+  };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250 ,mt:2}}>
-      
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250, mt: 2 }}>
+
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item.url} disablePadding>
-            <ListItemButton 
-              component={NavLink}       
+            <ListItemButton
+              component={NavLink}
               to={item.url}
-              sx={{ 
+              sx={{
                 textAlign: 'left',
                 '&.active': {
                   backgroundColor: theme.palette.action.selected
@@ -88,7 +89,7 @@ const Header = () => {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
-          position="fixed" 
+          position="fixed"
           sx={{
             backgroundColor: 'rgb(255 255 255 / var(--tw-bg-opacity, 1))',
             px: 2,
@@ -104,34 +105,34 @@ const Header = () => {
               flexWrap: 'wrap',
             }}
           >
-           
+
             {/* Left - Brand Name */}
-          <Box 
-            component={Link} 
-            to="/" 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              textDecoration: 'none' 
-            }}
-          >
-            <Avatar 
-              onClick={logohandleclick}
-              alt="Logo" 
-              src={mainLogo}
-              sx={{ width: 32, height: 32, marginRight: 1 }} 
-            />
-            <Typography
-              variant="h6"
-              sx={{ 
-                color: 'black', 
-                fontWeight: 'bold',
-                fontFamily: '"Playfair Display", serif',
+            <Box
+              component={Link}
+              to="/"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none'
               }}
             >
-              TrinetraTech
-            </Typography>
-          </Box>
+              <Avatar
+                onClick={logohandleclick}
+                alt="Logo"
+                src={mainLogo}
+                sx={{ width: 32, height: 32, marginRight: 1 }}
+              />
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  fontFamily: '"Playfair Display", serif',
+                }}
+              >
+                TrinetraTech
+              </Typography>
+            </Box>
 
 
             {/* Right - Menu / Navigation */}
@@ -172,9 +173,9 @@ const Header = () => {
                     </Button>
                   ))}
                 </Box>
-                <Button 
-                  variant="contained" 
-                  sx={{ 
+                <Button
+                  variant="contained"
+                  sx={{
                     backgroundColor: 'black',
                     fontFamily: '"Roboto", sans-serif',
                     '&:hover': {
@@ -184,6 +185,9 @@ const Header = () => {
                 >
                   Get Started
                 </Button>
+                <IconButton sx={{ color: 'black' }}>
+                  <SettingsIcon />
+                </IconButton>
               </Box>
             )}
           </Toolbar>
