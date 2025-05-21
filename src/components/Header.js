@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   AppBar,
   Box,
@@ -25,14 +25,17 @@ import { Link, NavLink } from 'react-router-dom';
 import mainLogo from '../assets/logo/mainLogo.jpg';
 import Swal from 'sweetalert2';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+
 
 const navItems = [
-  { label: 'Home', url: '/home' },
-  { label: 'Properties', url: '/properties' },
-  { label: 'Contact Us', url: '/contact' },
-  { label: 'About Us', url: '/about' },
-  { label: 'Testimonials', url: '/testimonials' }
+  { label: 'Home', id: 'home' },
+  { label: 'Service', id: 'services' },
+  { label: 'Contact Us', id: 'contact' },
+  { label: 'About Us', id: 'about_us' },
+  { label: 'Testimonials', id: 'testimonials' }
 ];
+
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -44,6 +47,7 @@ const Header = () => {
 
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -70,6 +74,7 @@ const Header = () => {
   };
 
   const drawer = (
+
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250, mt: 2 }}>
 
       <Divider />
@@ -86,7 +91,15 @@ const Header = () => {
                 }
               }}
             >
-              <Typography variant="body1">{item.label}</Typography>
+              <ScrollLink
+                to={item.id}
+                spy={true}
+                smooth={true}
+                duration={500}
+                offset={-64}
+              >
+                <Typography variant="body1">{item.label}</Typography>
+              </ScrollLink>
             </ListItemButton>
           </ListItem>
         ))}
@@ -100,7 +113,7 @@ const Header = () => {
         <AppBar
           position="fixed"
           sx={{
-            backgroundColor: 'rgb(255 255 255 / var(--tw-bg-opacity, 1))',
+            backgroundColor: "rgb(255 255 255 / var(--tw-bg-opacity, 1))",
             px: 2,
             boxShadow: 1,
             zIndex: theme.zIndex.drawer + 1, // Ensure header stays above other content
@@ -108,10 +121,10 @@ const Header = () => {
         >
           <Toolbar
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
             }}
           >
 
@@ -120,6 +133,7 @@ const Header = () => {
               component={Link}
               to="/"
               sx={{
+
                 display: 'flex',
                 alignItems: 'center',
                 textDecoration: 'none'
@@ -134,6 +148,7 @@ const Header = () => {
               <Typography
                 variant="h6"
                 sx={{
+
                   color: 'black',
                   fontWeight: 'bold',
                   fontFamily: '"Playfair Display", serif',
@@ -142,8 +157,6 @@ const Header = () => {
                 TrinetraTech
               </Typography>
             </Box>
-
-
             {/* Right - Menu / Navigation */}
             {isMobile ? (
               <IconButton
@@ -152,34 +165,42 @@ const Header = () => {
                 aria-label="menu"
                 onClick={handleDrawerToggle}
               >
-                <MenuIcon sx={{ color: 'black' }} />
+                <MenuIcon sx={{ color: "black" }} />
               </IconButton>
             ) : (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                 <Box
                   sx={{
-                    display: 'flex',
+                    display: "flex",
                     gap: 1,
-                    color: 'black',
+                    color: "black",
                   }}
                 >
                   {navItems.map((item) => (
-                    <Button
-                      key={item.url}
-                      component={NavLink}
-                      to={item.url}
-                      sx={{
-                        color: 'black',
-                        textTransform: 'capitalize',
-                        fontFamily: '"Roboto", sans-serif',
-                        '&.active': {
-                          fontWeight: 'bold',
-                          textDecoration: 'underline'
-                        }
-                      }}
+                    <ScrollLink
+                      key={item.id}
+                      to={item.id}
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                      offset={-64} // Offset to account for fixed header height
                     >
-                      {item.label}
-                    </Button>
+                      <Button
+                        key={item.url}
+                        component={NavLink}
+                        to={item.url}
+                        sx={{
+                          color: "black",
+                          textTransform: "capitalize",
+                          fontFamily: '"Roboto", sans-serif',
+                          "&.active": {
+                            fontWeight: "bold",
+                          },
+                        }}
+                      >
+                        {item.label}
+                      </Button>
+                    </ScrollLink>
                   ))}
                 </Box>
                 <Button
@@ -187,9 +208,9 @@ const Header = () => {
                   sx={{
                     backgroundColor: 'black',
                     fontFamily: '"Roboto", sans-serif',
-                    '&:hover': {
-                      backgroundColor: 'grey.800'
-                    }
+                    "&:hover": {
+                      backgroundColor: "grey.800",
+                    },
                   }}
                 >
                   Get Started
@@ -230,10 +251,8 @@ const Header = () => {
           </Toolbar>
         </AppBar>
       </Box>
-
       {/* Add padding to the main content to account for fixed header */}
       <Toolbar /> {/* This creates space below the fixed header */}
-
       {/* Mobile Drawer */}
       <Drawer
         anchor="left"
@@ -241,9 +260,9 @@ const Header = () => {
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
         sx={{
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             zIndex: theme.zIndex.appBar - 1, // Ensure drawer appears below app bar
-          }
+          },
         }}
       >
         {drawer}
