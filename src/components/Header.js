@@ -14,13 +14,17 @@ import {
   useTheme,
   useMediaQuery,
   Avatar,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Menu
 } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, NavLink } from 'react-router-dom';
 import mainLogo from '../assets/logo/mainLogo.jpg';
 import Swal from 'sweetalert2';
-
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 
 const navItems = [
   { label: 'Home', url: '/home' },
@@ -35,6 +39,11 @@ const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [swalState, setswalState] = React.useState(false)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -185,9 +194,37 @@ const Header = () => {
                 >
                   Get Started
                 </Button>
-                <IconButton sx={{ color: 'black' }}>
+                <IconButton sx={{ color: 'black' }} onClick={handleClick}>
                   <SettingsIcon />
                 </IconButton>
+
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <ColorLensIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Color Theme 1</ListItemText>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <ColorLensIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Color Theme 2</ListItemText>
+                  </MenuItem>
+                  {/* Add more color options later */}
+                </Menu>
               </Box>
             )}
           </Toolbar>
