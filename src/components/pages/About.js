@@ -71,7 +71,7 @@ const About = () => {
   ];
 
   return (
-    <Box component="section" py={8} bgcolor="background.paper" id="about-us">
+    <Box component="section" py={8} bgcolor="background.paper" id="about_us">
       <Container maxWidth="lg">
         {/* Header */}
         <Box textAlign="center" mb={8}>
