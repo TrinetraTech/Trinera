@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button, Typography, Grid, Paper, Stack } from "@mui/material";
-import { styled } from "@mui/system";
 
 const HeroSection = () => {
   return (
