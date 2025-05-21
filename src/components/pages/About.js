@@ -18,6 +18,7 @@ import {
   Favorite as FavoriteIcon,
   TrendingUp as TrendingUpIcon
 } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   const theme = useTheme();
@@ -248,7 +249,8 @@ const About = () => {
           <Button
             variant="contained"
             size="large"
-            href="#contact"
+             component={Link}
+            to="/contact"
             sx={{
               bgcolor: 'common.black',
               color: 'common.white',

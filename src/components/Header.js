@@ -14,12 +14,19 @@ import {
   useTheme,
   useMediaQuery,
   Avatar,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link, NavLink } from "react-router-dom";
-import mainLogo from "../assets/logo/mainLogo.jpg";
-import Swal from "sweetalert2";
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Menu
+} from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings'
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link, NavLink } from 'react-router-dom';
+import mainLogo from '../assets/logo/mainLogo.jpg';
+import Swal from 'sweetalert2';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+
 
 const navItems = [
   { label: 'Home', id: 'home' },
@@ -33,8 +40,14 @@ const navItems = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [swalState, setswalState] = React.useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [swalState, setswalState] = React.useState(false)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -42,16 +55,16 @@ const Header = () => {
     if (!swalState) {
       Swal.fire({
         imageUrl: mainLogo,
-        imageAlt: "mainlogo",
+        imageAlt: 'mainlogo',
         imageWidth: 300,
         imageHeight: 300,
         showConfirmButton: false,
-        background: "transparent",
-        transition: "0.5s ease-in-out",
+        background: 'transparent',
+        transition: '0.5s ease-in-out',
         backdrop: true,
         didClose: () => {
           setswalState(false); // Automatically reset state when popup closes
-        },
+        }
       });
       setswalState(true);
     } else {
@@ -61,10 +74,9 @@ const Header = () => {
   };
 
   const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", width: 250, mt: 2 }}
-    >
+
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250, mt: 2 }}>
+
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -73,10 +85,10 @@ const Header = () => {
               component={NavLink}
               to={item.url}
               sx={{
-                textAlign: "left",
-                "&.active": {
-                  backgroundColor: theme.palette.action.selected,
-                },
+                textAlign: 'left',
+                '&.active': {
+                  backgroundColor: theme.palette.action.selected
+                }
               }}
             >
               <ScrollLink
@@ -115,14 +127,16 @@ const Header = () => {
               flexWrap: "wrap",
             }}
           >
+
             {/* Left - Brand Name */}
             <Box
               component={Link}
               to="/"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                textDecoration: "none",
+
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none'
               }}
             >
               <Avatar
@@ -134,15 +148,15 @@ const Header = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: "black",
-                  fontWeight: "bold",
+
+                  color: 'black',
+                  fontWeight: 'bold',
                   fontFamily: '"Playfair Display", serif',
                 }}
               >
                 TrinetraTech
               </Typography>
             </Box>
-
             {/* Right - Menu / Navigation */}
             {isMobile ? (
               <IconButton
@@ -192,7 +206,7 @@ const Header = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "black",
+                    backgroundColor: 'black',
                     fontFamily: '"Roboto", sans-serif',
                     "&:hover": {
                       backgroundColor: "grey.800",
@@ -201,6 +215,37 @@ const Header = () => {
                 >
                   Get Started
                 </Button>
+                <IconButton sx={{ color: 'black' }} onClick={handleClick}>
+                  <SettingsIcon />
+                </IconButton>
+
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <ColorLensIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Color Theme 1</ListItemText>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <ColorLensIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Color Theme 2</ListItemText>
+                  </MenuItem>
+                  {/* Add more color options later */}
+                </Menu>
               </Box>
             )}
           </Toolbar>
