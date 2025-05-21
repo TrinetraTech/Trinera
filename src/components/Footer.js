@@ -36,12 +36,19 @@ const Footer = () => {
             properties and <br />personalized client experiences.
           </Typography>
           <Box display="flex" gap={1}>
-            {[Facebook, Twitter, Instagram, LinkedIn].map((SocialIcon, index) => (
-              <IconButton key={index} color="inherit" size="small">
+          {[
+            { icon: Facebook, url: 'https://facebook.com/yourpage' },
+            { icon: Twitter, url: 'https://twitter.com/yourhandle' },
+            { icon: Instagram, url: 'https://instagram.com/yourprofile' },
+            { icon: LinkedIn, url: 'https://linkedin.com/in/yourprofile' },
+          ].map(({ icon: SocialIcon, url }, index) => (
+            <a key={index} href={url} target="_blank" rel="noopener noreferrer">
+              <IconButton color="inherit" size="small">
                 <SocialIcon fontSize="small" />
               </IconButton>
-            ))}
-          </Box>
+            </a>
+          ))}
+        </Box>
         </>
       )
     },
