@@ -25,7 +25,7 @@ import { Link, NavLink } from 'react-router-dom';
 import mainLogo from '../assets/logo/mainLogo.jpg';
 import Swal from 'sweetalert2';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 
 
 const navItems = [
