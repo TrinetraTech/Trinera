@@ -9,7 +9,6 @@ import {
   CardContent,
   Avatar,
   Button,
-  useTheme,
   Divider
 } from '@mui/material';
 import {
@@ -21,7 +20,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const About = () => {
-  const theme = useTheme();
+  
 
   const features = [
     {
