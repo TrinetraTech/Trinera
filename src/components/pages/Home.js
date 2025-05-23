@@ -4,26 +4,25 @@ import Contact from './Contact'
 import Services from './Services'
 import Hero from './Hero'
 import { Element } from "react-scroll";
+import { Box } from '@mui/material'
 
 
 const Home = () => {
   return (
-    <>
+     <Box sx={{ overflow: 'hidden' }}>
       <Element name="hero">
-        <Hero/>
+        <Hero />
       </Element>
       <Element name="service">
-        <Services/>
+        <Services />
       </Element>
       <Element name="contact">
-        <Contact/>
+        <Contact />
       </Element>
       <Element name="About">
-        <About/>
+        <About />
       </Element>
-      
-    </>
-    
+    </Box>
   )
 }
 
