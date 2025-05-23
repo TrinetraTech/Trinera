@@ -4,8 +4,7 @@ import Contact from './Contact'
 import Services from './Services'
 import Hero from './Hero'
 import { Element } from "react-scroll";
-import { Box } from '@mui/material'
-
+import Box from '@mui/material/Box';
 
 const Home = () => {
   return (

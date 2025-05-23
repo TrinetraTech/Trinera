@@ -9,10 +9,6 @@ import {
   Avatar,
   IconButton,
   Button,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import {
   Star as StarIcon,
   ChatBubbleOutline as ChatIcon,
 } from "@mui/icons-material";
