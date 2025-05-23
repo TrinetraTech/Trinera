@@ -155,151 +155,284 @@ const Footer = () => {
   }, []);
 
   return (
-    <Box sx={{ bgcolor: 'grey.900', color: 'white', py: 8, overflowX: 'hidden' }}>
-      <Container maxWidth="xl">
-        <Grid container spacing={4} justifyContent="space-between" sx={{ flexWrap: 'wrap', px: { xs: 2, sm: 4, md: 6 } }}>
-          {/* Render footer sections */}
-          {footerSections.map((section, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Typography variant={index === 0 ? "h5" : "h6"} fontWeight="bold" gutterBottom>
-                {section.title}
-              </Typography>
-              {section.content || (
-                <Box display="flex" flexDirection="column" gap={1}>
-                  {section.links.map((link, linkIndex) => (
-                    <MuiLink key={linkIndex} href={link.href} color="grey.400" underline="hover">
-                      {link.text}
-                    </MuiLink>
-                  ))}
-                </Box>
-              )}
-            </Grid>
-          ))}
-
-          {/* Newsletter Section */}
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, bgcolor: 'grey.800', p: 3, borderRadius: 2, height: '100%' }}>
-              <Box>
-                <Typography variant="h6" gutterBottom color="grey.200">
-                  Subscribe to Our Newsletter
-                </Typography>
-                <Typography variant="body2" color="grey.400">
-                  Stay updated with our latest properties and real estate insights.
-                </Typography>
-              </Box>
-
-              <Box component="form" onSubmit={handleSubscribe} display="flex" gap={2} flexWrap="wrap">
-                <TextField
-                  variant="outlined"
-                  size="small"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  sx={{ bgcolor: 'white', borderRadius: 1, minWidth: '220px' }}
-                />
-                <Button type="submit" variant="contained" sx={{ bgcolor: 'primary.main' }}>
-                  Subscribe
-                </Button>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-
-        {/* Image Cards */}
-        <Box sx={{ mb: 4, mt: 12 }}>
-          <Grid container spacing={4} sx={{ px: 10 }}>
-            {footerImages.map((image, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <Card sx={{ position: 'relative', overflow: 'hidden', width: 600, height: 200 }}>
-                  <CardMedia
-                    component="img"
-                    height="100%"
-                    image={image.url}
-                    alt={image.alt}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s',
-                      '&:hover': { transform: 'scale(1.05)' },
-                    }}
-                  />
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-
-        {/* Contact Info */}
-        <Box sx={{ px: 12, py: 4, borderTop: '1px solid #2e2e2e' }}>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                {contactInfo.map((info, index) => (
-                  <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start', mb: 4, marginLeft: 20 }}>
-                    <Box sx={{ flexShrink: 0, mt: 1 }}>
-                      <Icon sx={{ fontSize: 24, color: 'neutral.400' }}>{info.icon}</Icon>
-                    </Box>
-                    <Box sx={{ ml: 3 }}>
-                      <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'white' }}>
-                        {info.title}
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: 'neutral.400' }}>
-                        {info.text}
-                      </Typography>
-                    </Box>
-                  </Box>
+   <Box sx={{ 
+  bgcolor: 'grey.900', 
+  color: 'white', 
+  py: { xs: 4, md: 8 },
+  overflowX: 'hidden',
+  width: '100%'
+}}>
+  <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 ,overflow:'hidden'} }}>
+    {/* Main Footer Content */}
+    <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="space-between">
+      {/* Footer Sections */}
+      {footerSections.map((section, index) => (
+        <Grid item xs={12} sm={6} md={3} key={index}>
+          <Box sx={{ mb: { xs: 3, md: 0 } }}>
+            <Typography 
+              variant={index === 0 ? "h5" : "h6"} 
+              fontWeight="bold" 
+              gutterBottom
+              sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              {section.title}
+            </Typography>
+            {section.content || (
+              <Box display="flex" flexDirection="column" gap={1}>
+                {section.links.map((link, linkIndex) => (
+                  <MuiLink 
+                    key={linkIndex} 
+                    href={link.href} 
+                    color="grey.400" 
+                    underline="hover"
+                    sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}
+                  >
+                    {link.text}
+                  </MuiLink>
                 ))}
               </Box>
-            </Grid>
-          </Grid>
-        </Box>
+            )}
+          </Box>
+        </Grid>
+      ))}
 
-        {/* Footer Bottom */}
-        <Box sx={{
-          py: 4, mt: 4, borderTop: '1px solid #2e2e2e', px: { xs: 2, md: 6 },
-          display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center',
-          justifyContent: 'space-between', rowGap: 2
+      {/* Newsletter Section */}
+      <Grid item xs={12} sm={6} md={3}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: 2, 
+          bgcolor: 'grey.800', 
+          p: 3, 
+          borderRadius: 2,
+          height: '100%'
         }}>
-
-          <Typography variant="body2" sx={{ color: '#B0B0B0', fontSize: 14, textAlign: 'left' }}>
-            &copy; 2023 LuxEstate. All rights reserved.
-          </Typography>
-
-          <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-end' } }}>
-            {footerLinks.map((link, index) => (
-              <MuiLink key={index} href={link.href} underline="none"
-                sx={{ color: '#B0B0B0', fontSize: 14, '&:hover': { color: 'white' } }}>
-                {link.text}
-              </MuiLink>
-            ))}
+          <Box>
+            <Typography 
+              variant="h6" 
+              gutterBottom 
+              color="grey.200"
+              sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+            >
+              Subscribe to Our Newsletter
+            </Typography>
+            <Typography 
+              variant="body2" 
+              color="grey.400"
+              sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}
+            >
+              Stay updated with our latest properties and real estate insights.
+            </Typography>
           </Box>
 
-          {/* Back to Top Button */}
-          {visible && (
-            <IconButton
-              onClick={scrollToTop}
-              sx={{
-                position: 'fixed',
-                bottom: 16,
-                right: 16,
-                backgroundColor: '#2e2e2e',
-                color: 'white',
-                width: 48,
-                height: 48,
-                borderRadius: '50%',
-                boxShadow: 3,
-                transition: 'all 0.3s',
-                '&:hover': { backgroundColor: '#444' },
+          <Box 
+            component="form" 
+            onSubmit={handleSubscribe} 
+            sx={{ 
+              display: 'flex', 
+              flexDirection: { xs: 'column', sm: 'row' },
+              gap: 2,
+              width: '100%'
+            }}
+          >
+            <TextField
+              variant="outlined"
+              size="small"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              sx={{ 
+                bgcolor: 'white', 
+                borderRadius: 1,
+                flexGrow: 1,
+                '& .MuiInputBase-root': {
+                  height: { xs: 40, sm: 36 }
+                }
               }}
-              aria-label="Back to top"
+              fullWidth
+            />
+            <Button 
+              type="submit" 
+              variant="contained" 
+              sx={{ 
+                bgcolor: 'primary.main',
+                whiteSpace: 'nowrap',
+                height: { xs: 40, sm: 36 }
+              }}
+              fullWidth={window.innerWidth < 600}
             >
-              <ArrowUpwardIcon />
-            </IconButton>
-          )}
+              Subscribe
+            </Button>
+          </Box>
         </Box>
-      </Container>
+      </Grid>
+    </Grid>
+
+    {/* Image Cards */}
+    <Box sx={{ 
+  mb: 4, 
+  mt: { xs: 12, md: 8 },
+  width: '100%',
+  overflow: 'hidden'
+}}>
+  <Grid container spacing={{ xs: 0, md: 4 }} sx={{ width: '100%', margin: 0 }}>
+    {footerImages.map((image, index) => (
+      <Grid item xs={12} md={6} key={index} sx={{ 
+        padding: { xs: '0 !important', md: 'inherit' },
+        marginBottom: { xs: 2, md: 0 }
+      }}>
+        <Card sx={{ 
+          position: 'relative', 
+          overflow: 'hidden', 
+          height: { xs: 180, sm: 240, md: 250 },
+          width:{xs:380,sm:700,md:700},
+          borderRadius: { xs: 1, md: 1 } // Remove border radius on mobile for full-width look
+        }}>
+          <CardMedia
+            component="img"
+            image={image.url}
+            alt={image.alt}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.5s',
+              '&:hover': { transform: 'scale(1.05)' },
+            }}
+          />
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+
+    {/* Contact Info */}
+    <Box sx={{ 
+      py: 4, 
+      borderTop: '1px solid #2e2e2e',
+      width: '100%'
+    }}>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box sx={{ 
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: { md: 'space-between' },
+            gap: { xs: 3, md: 0 },
+            width: '100%'
+          }}>
+            {contactInfo.map((info, index) => (
+              <Box 
+                key={index} 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'flex-start',
+                  width: { xs: '100%', md: 'auto' }
+                }}
+              >
+                <Box sx={{ flexShrink: 0, mt: 0.5 }}>
+                  <Icon sx={{ fontSize: 24, color: 'neutral.400' }}>{info.icon}</Icon>
+                </Box>
+                <Box sx={{ ml: 2 }}>
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      fontWeight: 'medium', 
+                      color: 'white',
+                      fontSize: { xs: '0.9375rem', sm: '1rem' }
+                    }}
+                  >
+                    {info.title}
+                  </Typography>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'neutral.400',
+                      fontSize: { xs: '0.8125rem', sm: '0.875rem' }
+                    }}
+                  >
+                    {info.text}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
+
+    {/* Footer Bottom */}
+    <Box sx={{
+      py: 3,
+      borderTop: '1px solid #2e2e2e',
+      display: 'flex',
+      flexDirection: { xs: 'column-reverse', sm: 'row' },
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 2,
+      width: '100%'
+    }}>
+      <Typography 
+        variant="body2" 
+        sx={{ 
+          color: '#B0B0B0', 
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+          textAlign: { xs: 'center', sm: 'left' }
+        }}
+      >
+        &copy; 2023 LuxEstate. All rights reserved.
+      </Typography>
+
+      <Box sx={{ 
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: { xs: 'center', sm: 'flex-end' },
+        gap: { xs: 2, sm: 3, md: 4 },
+        width: { xs: '100%', sm: 'auto' }
+      }}>
+        {footerLinks.map((link, index) => (
+          <MuiLink 
+            key={index} 
+            href={link.href} 
+            underline="none"
+            sx={{ 
+              color: '#B0B0B0', 
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              '&:hover': { color: 'white' },
+              whiteSpace: 'nowrap'
+            }}
+          >
+            {link.text}
+          </MuiLink>
+        ))}
+      </Box>
+    </Box>
+
+    {/* Back to Top Button */}
+    {visible && (
+      <IconButton
+        onClick={scrollToTop}
+        sx={{
+          position: 'fixed',
+          bottom: 16,
+          right: 16,
+          backgroundColor: '#2e2e2e',
+          color: 'white',
+          width: { xs: 40, sm: 48 },
+          height: { xs: 40, sm: 48 },
+          borderRadius: '50%',
+          boxShadow: 3,
+          transition: 'all 0.3s',
+          '&:hover': { backgroundColor: '#444' },
+          zIndex: 1000
+        }}
+        aria-label="Back to top"
+      >
+        <ArrowUpwardIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
+      </IconButton>
+    )}
+  </Container>
+</Box>
   );
 };
 

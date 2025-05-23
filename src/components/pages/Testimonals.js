@@ -13,7 +13,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { 
-  FormatQuote as QuoteIcon,
+  
   Star as StarIcon,
   ChatBubbleOutline as ChatIcon
 } from '@mui/icons-material';
