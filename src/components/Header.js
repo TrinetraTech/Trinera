@@ -10,7 +10,6 @@ import {
   Button,
   IconButton,
   Drawer,
-  Divider,
   useTheme,
   useMediaQuery,
   Avatar,
@@ -77,19 +76,14 @@ const Header = () => {
 
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250, mt: 2 }}>
 
-      <Divider />
+      
       <List>
         {navItems.map((item) => (
           <ListItem key={item.url} disablePadding>
             <ListItemButton
               component={NavLink}
               to={item.url}
-              sx={{
-                textAlign: 'left',
-                '&.active': {
-                  backgroundColor: theme.palette.action.selected
-                }
-              }}
+              
             >
               <ScrollLink
                 to={item.id}
@@ -255,7 +249,7 @@ const Header = () => {
       <Toolbar /> {/* This creates space below the fixed header */}
       {/* Mobile Drawer */}
       <Drawer
-        anchor="left"
+        anchor="top"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Button, Typography, Grid, Paper, Stack } from "@mui/material";
-
+import banner from '../../assets/banner.png';
 const HeroSection = () => {
   return (
     <Box
       sx={{
-        background: "linear-gradient(135deg, #2a6df5 0%, #1a4db0 100%)",
+        backgroundImage: `url(${banner})`,
         py: { xs: 8, md: 12 },
         color: "white",
       }}
