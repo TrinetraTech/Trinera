@@ -20,53 +20,51 @@ import {
 import { Link } from 'react-router-dom';
 
 const About = () => {
-  
-
   const features = [
     {
       icon: <CheckCircleIcon fontSize="small" />,
-      title: "Experts",
-      description: "Our team of seasoned professionals brings decades of combined experience in the real estate market."
+      title: "Expert Engineers",
+      description: "Our developers bring years of experience in full-stack development, DevOps, and cloud-native architectures."
     },
     {
       icon: <PeopleIcon fontSize="small" />,
-      title: "Personalized",
-      description: "We take the time to understand your unique needs and preferences to find your perfect property match."
+      title: "Client-Centric",
+      description: "We tailor solutions to each client’s unique tech needs — from MVPs to enterprise-scale platforms."
     },
     {
       icon: <FavoriteIcon fontSize="small" />,
-      title: "98% Satisfaction",
-      description: "Our 98% client satisfaction rate reflects our commitment to exceeding expectations at every step."
+      title: "Reliable Delivery",
+      description: "98% of our clients return for additional projects, a testament to our consistency and reliability."
     },
     {
       icon: <TrendingUpIcon fontSize="small" />,
-      title: "Market Data",
-      description: "Access to exclusive market data and trends helps you make informed decisions with confidence."
+      title: "Data-Driven",
+      description: "We make decisions backed by analytics, ensuring your tech solution performs and scales effectively."
     }
   ];
 
   const stats = [
-    { value: 1500, label: "Properties Sold" },
-    { value: 950, label: "Happy Clients" },
-    { value: 25, label: "Years Experience" },
-    { value: 42, label: "Industry Awards" }
+    { value: 120, label: "Projects Delivered" },
+    { value: 85, label: "Satisfied Clients" },
+    { value: 5, label: "Years in Tech" },
+    { value: 12, label: "Tech Stack Experts" }
   ];
 
   const processSteps = [
     {
       step: 1,
-      title: "Consultation",
-      description: " We begin with a detailed discussion to understand your requirements, preferences, and budget constraints."
+      title: "Discovery & Planning",
+      description: "We work with you to define your goals, tech requirements, and project roadmap."
     },
     {
       step: 2,
-      title: "Property Matching",
-      description: "Our experts curate a selection of properties that align perfectly with your specific needs and preferences."
+      title: "Development & Testing",
+      description: "Agile development with continuous testing ensures a bug-free and high-performing product."
     },
     {
       step: 3,
-      title: "Seamless Transaction",
-      description: "We handle all paperwork, negotiations, and logistics to ensure a smooth and successful closing process."
+      title: "Launch & Support",
+      description: "We deploy, monitor, and offer ongoing support to ensure long-term stability and growth."
     }
   ];
 
@@ -76,14 +74,14 @@ const About = () => {
         {/* Header */}
         <Box textAlign="center" mb={8}>
           <Typography variant="h3" component="h2" gutterBottom fontWeight="bold">
-            About Us
+            About Trinetr Tech
           </Typography>
           <Typography variant="h6" color="text.secondary" maxWidth="sm" mx="auto">
-            Industry expertise meets personalized service for exceptional results.
+            A next-gen IT solutions company powering growth for startups and enterprises.
           </Typography>
         </Box>
 
-        {/* Uniform Feature Cards - Wrapped in Box */}
+        {/* Features */}
         <Box sx={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -151,8 +149,8 @@ const About = () => {
           p={{ xs: 4, md: 6 }}
           mb={10}
           display="flex"
-          justifyContent="center"  // Centers the content horizontally
-          alignItems="center"      // Centers the content vertically
+          justifyContent="center"
+          alignItems="center"
         >
           <Grid container spacing={15}>
             {stats.map((stat, index) => (
@@ -164,7 +162,6 @@ const About = () => {
                     fontWeight="bold"
                     color="common.white"
                     mb={1}
-
                   >
                     <CountUp start={0} end={stat.value} duration={5} delay={0}>
                       {({ countUpRef }) => (
@@ -183,7 +180,6 @@ const About = () => {
           </Grid>
         </Box>
 
-
         {/* Process Section */}
         <Box mb={10}>
           <Box textAlign="center" mb={6}>
@@ -191,7 +187,7 @@ const About = () => {
               Our Process
             </Typography>
             <Typography variant="h6" color="text.secondary" maxWidth="sm" mx="auto">
-              We've streamlined the real estate journey to make your experience seamless and stress-free.
+              From concept to deployment, our streamlined process ensures your digital product succeeds.
             </Typography>
           </Box>
 
@@ -225,22 +221,17 @@ const About = () => {
                     {index !== 2 && (
                       <Divider sx={{ borderBottom: '5px solid red', width: '280px', mb: 5, ml: 2 }} />
                     )}
-
                   </Box>
-                  <Typography variant="h6" component="h4" fontWeight="bold" gutterBottom >
+                  <Typography variant="h6" component="h4" fontWeight="bold" gutterBottom>
                     {step.title}
                   </Typography>
-
                   <Typography variant="body2" color="text.secondary">
                     {step.description}
                   </Typography>
                 </Box>
-
               </Grid>
-
             ))}
           </Grid>
-
         </Box>
 
         {/* CTA */}
@@ -248,7 +239,7 @@ const About = () => {
           <Button
             variant="contained"
             size="large"
-             component={Link}
+            component={Link}
             to="/contact"
             sx={{
               bgcolor: 'common.black',
@@ -264,7 +255,84 @@ const About = () => {
             Schedule a Consultation
           </Button>
         </Box>
+        <Box textAlign="center" mb={10}>
+  <Typography variant="h4" fontWeight="bold" gutterBottom>
+    A Word from Our Founder
+  </Typography>
+  <Typography
+    variant="body1"
+    color="text.secondary"
+    maxWidth="md"
+    mx="auto"
+    mt={2}
+  >
+    "At Trinetr Tech, we believe in building more than just software—we build
+    partnerships that scale with your business. Our mission is to empower startups
+    and enterprises through clean code, scalable architecture, and honest collaboration.
+    We’re not just your tech team — we’re your tech partner."
+  </Typography>
+  <Typography variant="subtitle1" mt={3} fontWeight="bold">
+    —  Founder & CEO
+  </Typography>
+</Box>
+{/* Company Timeline */}
+<Box mb={10}>
+  <Typography variant="h4" textAlign="center" fontWeight="bold" gutterBottom>
+    Our Journey
+  </Typography>
+  <Grid container spacing={4} justifyContent="center" mt={4}>
+    {[
+      { year: "2020", event: "Trinetr Tech Founded with 3 engineers" },
+      { year: "2021", event: "Launched 15+ web apps for early clients" },
+      { year: "2022", event: "Expanded into DevOps & cloud consulting" },
+      { year: "2023", event: "Opened first international client office" },
+      { year: "2024", event: "Crossed 100+ successful project deliveries" }
+    ].map((milestone, idx) => (
+      <Grid item xs={12} sm={6} md={4} key={idx}>
+        <Card elevation={2} sx={{ p: 3 }}>
+          <Typography variant="h6" fontWeight="bold" color="primary">
+            {milestone.year}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            {milestone.event}
+          </Typography>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+{/* Tech Stack */}
+<Box mb={10}>
+  <Typography variant="h4" textAlign="center" fontWeight="bold" gutterBottom>
+    Our Technology Stack
+  </Typography>
+  <Grid container spacing={3} justifyContent="center" mt={3}>
+    {[
+      "React",
+      "Node.js",
+      "Next.js",
+      "Python",
+      "Django",
+      "Firebase",
+      "MongoDB",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Azure",
+      "GitHub Actions"
+    ].map((tech, i) => (
+      <Grid item key={i}>
+        <Card sx={{ px: 3, py: 2, borderRadius: 2 }}>
+          <Typography fontWeight="bold">{tech}</Typography>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+
+
       </Container>
+      
     </Box>
   );
 };
