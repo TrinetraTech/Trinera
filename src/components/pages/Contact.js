@@ -141,18 +141,7 @@ const Contact = () => {
                     },
                   }}
                 />
-              </Box>
 
-              <Box mt={2}>
-                <TextField
-                  fullWidth
-                  required
-                  label="Subject"
-                  name="subject"
-                  aria-label="Subject"
-                  aria-required="true"
-                  autoComplete="off"
-                />
               </Box>
 
               <Box mt={2}>
@@ -173,7 +162,9 @@ const Contact = () => {
                     <MenuItem value="Other Inquiry">Other Inquiry</MenuItem>
                   </Select>
                 </FormControl>
-              </Box>
+ </Box>
+
+             
 
               <Box mt={2}>
                 <TextField
@@ -185,6 +176,7 @@ const Contact = () => {
                   name="message"
                   aria-label="Message"
                   aria-required="true"
+
                 />
               </Box>
 
@@ -194,6 +186,7 @@ const Contact = () => {
                   label="Subscribe to our newsletter for market updates and exclusive property listings"
                   aria-label="Message"
                   aria-required="true"
+
                 />
               </Box>
               <Button
