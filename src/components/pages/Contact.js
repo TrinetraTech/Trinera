@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { useRef } from "react";
 import {
   Box,
   Button,
@@ -13,13 +14,62 @@ import {
   Typography,
   Paper,
   SvgIcon,
-} from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+} from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import emailjs from "@emailjs/browser";
+
 const Contact = () => {
+  const formRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = formRef.current;
+
+    // Check validity of the entire form
+    if (!form.checkValidity()) {
+      // This will trigger native validation UI
+      form.reportValidity();
+      return; // Don't send emails if invalid
+    }
+
+    // If valid, proceed with emailjs
+    // First: send to admin
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_ADMIN_TEMPLATE_ID,
+        formRef.current,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        // Then: send thank-you email to user
+        emailjs
+          .sendForm(
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_USER_TEMPLATE_ID,
+            formRef.current,
+            process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+          )
+          .then(() => {
+            alert("Message sent to both user and admin!");
+            formRef.current.reset(); // optional
+          })
+          .catch((err) => {
+            alert("User email failed to send.");
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        alert("Admin email failed to send.");
+        console.error(err);
+      });
+  };
+
   return (
     <Box mb={4}>
       {/* Page Title */}
@@ -35,23 +85,63 @@ const Contact = () => {
       <Grid container spacing={6} alignItems="flex-start">
         {/* Contact Form */}
         <Grid item xs={12} lg={4}>
-          <Paper elevation={1} sx={{ p: 4, bgcolor: 'neutral.50', ml: 20 }}>
+          <Paper elevation={1} sx={{ p: 4, bgcolor: "neutral.50", ml: 20 }}>
             <Typography variant="h5" fontWeight="bold" gutterBottom>
               Send Us a Message
             </Typography>
 
-            <Box component="form" id="contact-form" noValidate autoComplete="off" sx={{ mt: 2 }}>
+            <Box
+              component="form"
+              id="contact-form"
+              ref={formRef}
+              onSubmit={handleSubmit}
+              noValidate
+              autoComplete="off"
+              sx={{ mt: 2 }}
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                  <TextField fullWidth required label="Full Name" name="name" />
+                  <TextField
+                    fullWidth
+                    required
+                    label="Full Name"
+                    name="name"
+                    aria-label="Full Name"
+                    aria-required="true"
+                  />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <TextField fullWidth required type="email" label="Email Address" name="email" />
+                  <TextField
+                    fullWidth
+                    required
+                    type="email"
+                    label="Email Address"
+                    name="email"
+                    aria-label="Email Address"
+                    aria-required="true"
+                    autoComplete="email"
+                  />
                 </Grid>
               </Grid>
 
               <Box mt={2}>
-                <TextField fullWidth type="tel" label="Phone Number" name="phone" />
+                <TextField
+                  fullWidth
+                  required
+                  type="tel"
+                  label="Phone Number" // <-- this must be a string
+                  name="phone"
+                  aria-label="Phone Number"
+                  aria-required="true"
+                  autoComplete="tel"
+                  slotProps={{
+                    input: {
+                      pattern: "[0-9]*",
+                      inputMode: "numeric",
+                    },
+                  }}
+                />
+
               </Box>
 
               <Box mt={2}>
@@ -65,14 +155,16 @@ const Contact = () => {
                     defaultValue=""
                   >
                     <MenuItem value="">Select a subject</MenuItem>
-                    <MenuItem value="buying">Buying a Property</MenuItem>
-                    <MenuItem value="selling">Selling a Property</MenuItem>
-                    <MenuItem value="renting">Renting a Property</MenuItem>
-                    <MenuItem value="investing">Property Investment</MenuItem>
-                    <MenuItem value="other">Other Inquiry</MenuItem>
+                    <MenuItem value="Buying a Property">Buying a Property</MenuItem>
+                    <MenuItem value="Selling a Property">Selling a Property</MenuItem>
+                    <MenuItem value="Renting a Property">Renting a Property</MenuItem>
+                    <MenuItem value="Property Investment">Property Investment</MenuItem>
+                    <MenuItem value="Other Inquiry">Other Inquiry</MenuItem>
                   </Select>
                 </FormControl>
-              </Box>
+ </Box>
+
+             
 
               <Box mt={2}>
                 <TextField
@@ -82,6 +174,9 @@ const Contact = () => {
                   rows={4}
                   label="Message"
                   name="message"
+                  aria-label="Message"
+                  aria-required="true"
+
                 />
               </Box>
 
@@ -89,9 +184,11 @@ const Contact = () => {
                 <FormControlLabel
                   control={<Checkbox name="newsletter" color="primary" />}
                   label="Subscribe to our newsletter for market updates and exclusive property listings"
+                  aria-label="Message"
+                  aria-required="true"
+
                 />
               </Box>
-
               <Button
                 type="submit"
                 fullWidth
@@ -119,7 +216,7 @@ const Contact = () => {
                 <img
                   src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?auto=format&fit=crop&w=1080&q=80"
                   alt="LuxEstate office"
-                  style={{ width: '100%', height: '340px', objectFit: 'cover' }}
+                  style={{ width: "100%", height: "340px", objectFit: "cover" }}
                 />
               </Paper>
             </Grid>
@@ -154,14 +251,17 @@ const Contact = () => {
 
                 <Box mt={2}>
                   <Typography fontWeight="medium">Office Hours</Typography>
+
                   <Typography variant="body2" color="text.secondary">Mon - Fri: 9:00 AM - 6:00 PM</Typography>
                   <Typography variant="body2" color="text.secondary">Saturday: 10:00 AM - 4:00 PM</Typography>
                   <Typography variant="body2" color="text.secondary">Sunday: Open</Typography>
+
                 </Box>
               </Paper>
             </Grid>
 
             <Grid item>
+
   <Paper elevation={1} sx={{ p: 3 }}>
     <Typography variant="h6" fontWeight="bold" gutterBottom>
       Connect With Us
@@ -200,6 +300,7 @@ const Contact = () => {
 
   </Paper>
 </Grid>
+
           </Grid>
         </Grid>
       </Grid>
