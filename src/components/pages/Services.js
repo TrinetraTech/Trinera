@@ -14,61 +14,58 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import LanguageIcon from "@mui/icons-material/Language";
-import EditIcon from "@mui/icons-material/Edit";
-import SettingsIcon from "@mui/icons-material/Settings";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AndroidIcon from "@mui/icons-material/Android";
+import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 const services = [
   {
     icon: <LanguageIcon fontSize="large" color="primary" />,
-    title: "Static Website",
-    price: "$199",
-    subtitle: "Starting at",
+    title: "Business Website",
+   
     features: [
-      "Up to 5 Pages",
-      "Responsive Design",
-      "Basic SEO Optimization",
-      "Contact Form",
-      "Fast Loading Speed",
+      "Modern 5-Page Design",
+      "Mobile Responsive",
+      "SEO Basics Setup",
+      "Contact & Inquiry Forms",
+      "Performance Optimized",
+    ],
+  },
+ {
+  icon: <AndroidIcon fontSize="large" color="primary" />,
+  title: "Android App Development",
+  
+  features: [
+    "Custom Native App Design",
+    "Kotlin & Java Development",
+    "Responsive UI with Jetpack Compose",
+    "API Integration & Data Handling",
+    "App Store Deployment (Google Play)",
+  ],
+},
+
+  {
+    icon: <IntegrationInstructionsIcon fontSize="large" color="primary" />,
+    title: "Web App Development",
+    
+    features: [
+      "Custom Frontend & Backend",
+      "User Authentication & Roles",
+      "API & Third-Party Integration",
+      "Database Architecture",
+      "Security Best Practices",
     ],
   },
   {
-    icon: <EditIcon fontSize="large" color="primary" />,
-    title: "Semi-Dynamic Website",
-    price: "$499",
-    subtitle: "Starting at",
+    icon: <ShoppingCartCheckoutIcon fontSize="large" color="primary" />,
+    title: "E-commerce Platform",
+    
     features: [
-      "Up to 10 Pages",
-      "CMS Integration",
-      "Custom Contact Forms",
-      "Social Media Integration",
-      "Basic Analytics",
-    ],
-  },
-  {
-    icon: <SettingsIcon fontSize="large" color="primary" />,
-    title: "Full Functional Website",
-    price: "$999",
-    subtitle: "Starting at",
-    features: [
-      "Custom Web Application",
-      "User Authentication",
-      "Database Integration",
-      "API Integration",
-      "Advanced Security",
-    ],
-  },
-  {
-    icon: <ShoppingCartIcon fontSize="large" color="primary" />,
-    title: "Ecommerce Website",
-    price: "$1999",
-    subtitle: "Starting at",
-    features: [
-      "Product Management",
-      "Payment Gateway",
-      "Inventory System",
-      "Order Tracking",
-      "SSL Certificate",
+      "Product & Category Management",
+      "Payment Gateway Integration",
+      "User Dashboard & Checkout",
+      "Inventory & Order Tracking",
+      "Advanced Analytics",
     ],
   },
 ];
@@ -76,7 +73,18 @@ const services = [
 export default function Services() {
   return (
     <Container sx={{ mt: 4 }} id="services">
-      <Grid container spacing={4}>
+      <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
+        Our Services
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        align="center"
+        color="text.secondary"
+        gutterBottom
+      >
+        End-to-end digital solutions tailored to scale your business
+      </Typography>
+      <Grid container spacing={4} sx={{ mt: 2 }}>
         {services.map((service, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Card

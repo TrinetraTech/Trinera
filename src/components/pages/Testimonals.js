@@ -13,7 +13,6 @@ import {
   useTheme,
 } from "@mui/material";
 
-// Import only icons from @mui/icons-material
 import {
   Star as StarIcon,
   ChatBubbleOutline as ChatIcon,
@@ -23,55 +22,55 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "Working with Tranquil Estates was a game-changer. They found us our dream home in just two weeks, handling every detail with professionalism and care.",
-    name: "James Davis",
-    role: "First-time Homebuyer",
-    initials: "JD",
+      "Trinetr Tech delivered a stunning website for our SaaS product — on time and under budget. Their team is highly professional and technically skilled.",
+    name: "Anjali Mehta",
+    role: "SaaS Founder",
+    initials: "AM",
     rating: 5,
   },
   {
     id: 2,
     quote:
-      "Their market knowledge is unmatched. We sold our property above asking price in just 10 days. The entire process was smooth and stress-free.",
-    name: "Sarah Miller",
-    role: "Property Seller",
-    initials: "SM",
+      "Their cloud infrastructure setup has made our system scalable and more reliable. We’ve seen a 30% drop in downtime since implementation.",
+    name: "Rohit Patel",
+    role: "CTO, Logistics Platform",
+    initials: "RP",
     rating: 5,
   },
   {
     id: 3,
     quote:
-      "As a commercial property investor, I appreciate their attention to detail and market analysis. They've helped me secure three profitable investments.",
-    name: "Robert Johnson",
-    role: "Commercial Investor",
-    initials: "RJ",
+      "Thanks to Trinetr Tech’s custom CRM system, we’ve streamlined our workflow and improved client response time dramatically.",
+    name: "Neha Shah",
+    role: "Operations Manager",
+    initials: "NS",
     rating: 5,
   },
   {
     id: 4,
     quote:
-      "Relocating to a new city was daunting, but they made it seamless. Their virtual tours and local insights were invaluable in our decision-making.",
-    name: "Emily Lee",
-    role: "Long-distance Buyer",
-    initials: "EL",
+      "From UX design to backend integration, their full-stack team handled our mobile app project smoothly. Highly recommended for startups.",
+    name: "Arun Verma",
+    role: "Startup Co-founder",
+    initials: "AV",
     rating: 5,
   },
   {
     id: 5,
     quote:
-      "The property management services are exceptional. Our rental properties have never been in better hands, with higher occupancy rates and returns.",
-    name: "David Thompson",
-    role: "Property Owner",
-    initials: "DT",
+      "Trinetr’s team went above and beyond during our e-commerce launch. Their SEO and performance optimizations helped us double our traffic.",
+    name: "Priya Desai",
+    role: "E-commerce Manager",
+    initials: "PD",
     rating: 5,
   },
   {
     id: 6,
     quote:
-      "Their financing guidance was crucial in helping us navigate the complex mortgage process. We secured a great rate thanks to their connections.",
-    name: "Michael Rodriguez",
-    role: "First-time Homebuyer",
-    initials: "MR",
+      "The API integrations were complex, but Trinetr made it feel effortless. Reliable, responsive, and technically excellent.",
+    name: "Karan Malhotra",
+    role: "Product Manager",
+    initials: "KM",
     rating: 5,
   },
 ];
@@ -80,7 +79,6 @@ const Testimonials = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // Duplicate testimonials for infinite scroll effect
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
@@ -102,7 +100,7 @@ const Testimonials = () => {
               color: theme.palette.grey[900],
             }}
           >
-            Testimonials
+            What Our Clients Say
           </Typography>
           <Typography
             variant="body1"
@@ -112,12 +110,12 @@ const Testimonials = () => {
               mx: "auto",
             }}
           >
-            Hear what our satisfied clients have to say about their experience
-            with us.
+            Hear from companies and entrepreneurs who partnered with Trinetr Tech
+            to launch, scale, and transform their digital platforms.
           </Typography>
         </Box>
 
-        {/* Testimonials Carousel */}
+        {/* Carousel */}
         <Box
           sx={{
             position: "relative",
@@ -219,7 +217,7 @@ const Testimonials = () => {
           </Box>
         </Box>
 
-        {/* Testimonial Video CTA */}
+        {/* CTA Button */}
         <Box mt={8} textAlign="center">
           <Button
             variant="contained"
@@ -243,7 +241,7 @@ const Testimonials = () => {
         </Box>
       </Container>
 
-      {/* Animation styles */}
+      {/* Global CSS for scroll animation */}
       <style jsx global>{`
         @keyframes scroll {
           0% {
