@@ -156,6 +156,26 @@ const Contact = () => {
               </Box>
 
               <Box mt={2}>
+                <FormControl fullWidth>
+                  <InputLabel id="subject-label">Subject</InputLabel>
+                  <Select
+                    labelId="subject-label"
+                    id="contact-subject"
+                    name="subject"
+                    label="Subject"
+                    defaultValue=""
+                  >
+                    <MenuItem value="">Select a subject</MenuItem>
+                    <MenuItem value="Buying a Property">Buying a Property</MenuItem>
+                    <MenuItem value="Selling a Property">Selling a Property</MenuItem>
+                    <MenuItem value="Renting a Property">Renting a Property</MenuItem>
+                    <MenuItem value="Property Investment">Property Investment</MenuItem>
+                    <MenuItem value="Other Inquiry">Other Inquiry</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+
+              <Box mt={2}>
                 <TextField
                   fullWidth
                   required
@@ -168,6 +188,14 @@ const Contact = () => {
                 />
               </Box>
 
+              <Box mt={2}>
+                <FormControlLabel
+                  control={<Checkbox name="newsletter" color="primary" />}
+                  label="Subscribe to our newsletter for market updates and exclusive property listings"
+                  aria-label="Message"
+                  aria-required="true"
+                />
+              </Box>
               <Button
                 type="submit"
                 fullWidth
