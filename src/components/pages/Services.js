@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import LanguageIcon from "@mui/icons-material/Language";
-import StorageIcon from "@mui/icons-material/Storage";
+import AndroidIcon from "@mui/icons-material/Android";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
@@ -31,18 +31,19 @@ const services = [
       "Performance Optimized",
     ],
   },
-  {
-    icon: <StorageIcon fontSize="large" color="primary" />,
-    title: "Cloud & Hosting Setup",
-   
-    features: [
-      "Cloud Environment Setup",
-      "Secure Hosting Configuration",
-      "Email & Domain Setup",
-      "Auto Backup Configuration",
-      "Monitoring Tools Integration",
-    ],
-  },
+ {
+  icon: <AndroidIcon fontSize="large" color="primary" />,
+  title: "Android App Development",
+  
+  features: [
+    "Custom Native App Design",
+    "Kotlin & Java Development",
+    "Responsive UI with Jetpack Compose",
+    "API Integration & Data Handling",
+    "App Store Deployment (Google Play)",
+  ],
+},
+
   {
     icon: <IntegrationInstructionsIcon fontSize="large" color="primary" />,
     title: "Web App Development",

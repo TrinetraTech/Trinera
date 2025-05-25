@@ -134,21 +134,21 @@ const Contact = () => {
                 <Box mt={2}>
                   <Typography fontWeight="medium">Address</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    123 Luxury Lane, New York, NY 10001
+                    Ashok Nagar, Kankarhbagh, Patna (800020).
                   </Typography>
                 </Box>
 
                 <Box mt={2}>
                   <Typography fontWeight="medium">Phone</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    (555) 123-4567
+                   +91 9304493057, +91 6207665438, +91 9955748811
                   </Typography>
                 </Box>
 
                 <Box mt={2}>
                   <Typography fontWeight="medium">Email</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    info@luxestate.com
+                    trinetrtech@gmail.com
                   </Typography>
                 </Box>
 
@@ -156,7 +156,7 @@ const Contact = () => {
                   <Typography fontWeight="medium">Office Hours</Typography>
                   <Typography variant="body2" color="text.secondary">Mon - Fri: 9:00 AM - 6:00 PM</Typography>
                   <Typography variant="body2" color="text.secondary">Saturday: 10:00 AM - 4:00 PM</Typography>
-                  <Typography variant="body2" color="text.secondary">Sunday: Closed</Typography>
+                  <Typography variant="body2" color="text.secondary">Sunday: Open</Typography>
                 </Box>
               </Paper>
             </Grid>
@@ -167,36 +167,37 @@ const Contact = () => {
       Connect With Us
     </Typography>
     <Box display="flex" gap={2} justifyContent="center" flexWrap="wrap">
-      {[
-        { name: 'Facebook', icon: <FacebookIcon /> },
-        { name: 'Instagram', icon: <InstagramIcon /> },
-        { name: 'Twitter', icon: <TwitterIcon /> },
-        { name: 'LinkedIn', icon: <LinkedInIcon /> },
-        { name: 'YouTube', icon: <YouTubeIcon /> }
-      ].map((social, i) => (
-        <Button
-          key={i}
-          variant="contained"
-          color="inherit"
-          sx={{
-            minWidth: 0,
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            '&:hover': {
-              backgroundColor: '#1976d2', // Change to your preferred hover color
-            },
-            transition: 'background-color 0.3s ease',
-          }}
-          aria-label={social.name}
-        >
-          {social.icon}
-        </Button>
-      ))}
-    </Box>
+  {[
+    { name: 'Facebook', url: 'https://www.facebook.com/share/1BwAUQB4Rb/', icon: <FacebookIcon /> },
+    { name: 'Instagram', url: 'https://www.instagram.com/trinetrtech/?hl=en', icon: <InstagramIcon /> },
+    { name: 'Twitter', url: 'https://x.com/trinetrtech', icon: <TwitterIcon /> },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/trinetra-tech-827061365/', icon: <LinkedInIcon /> },
+  ].map((social, i) => (
+    <Button
+      key={i}
+      variant="contained"
+      color="inherit"
+      onClick={() => window.open(social.url, '_blank')}
+      sx={{
+        minWidth: 0,
+        width: 40,
+        height: 40,
+        borderRadius: '50%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        '&:hover': {
+          backgroundColor: '#1976d2',
+        },
+        transition: 'background-color 0.3s ease',
+      }}
+      aria-label={social.name}
+    >
+      {social.icon}
+    </Button>
+  ))}
+</Box>
+
   </Paper>
 </Grid>
           </Grid>

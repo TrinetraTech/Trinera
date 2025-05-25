@@ -74,7 +74,7 @@ const About = () => {
         {/* Header */}
         <Box textAlign="center" mb={8}>
           <Typography variant="h3" component="h2" gutterBottom fontWeight="bold">
-            About Trinetr Tech
+            About Trinetra Tech
           </Typography>
           <Typography variant="h6" color="text.secondary" maxWidth="sm" mx="auto">
             A next-gen IT solutions company powering growth for startups and enterprises.
@@ -235,7 +235,7 @@ const About = () => {
         </Box>
 
         {/* CTA */}
-        <Box textAlign="center">
+        <Box textAlign="center" mb={10}>
           <Button
             variant="contained"
             size="large"
@@ -266,69 +266,17 @@ const About = () => {
     mx="auto"
     mt={2}
   >
-    "At Trinetr Tech, we believe in building more than just software—we build
+    "At Trinetra Tech, we believe in building more than just software—we build
     partnerships that scale with your business. Our mission is to empower startups
     and enterprises through clean code, scalable architecture, and honest collaboration.
     We’re not just your tech team — we’re your tech partner."
   </Typography>
   <Typography variant="subtitle1" mt={3} fontWeight="bold">
-    —  Founder & CEO
+    —  Founder 
   </Typography>
 </Box>
-{/* Company Timeline */}
-<Box mb={10}>
-  <Typography variant="h4" textAlign="center" fontWeight="bold" gutterBottom>
-    Our Journey
-  </Typography>
-  <Grid container spacing={4} justifyContent="center" mt={4}>
-    {[
-      { year: "2020", event: "Trinetr Tech Founded with 3 engineers" },
-      { year: "2021", event: "Launched 15+ web apps for early clients" },
-      { year: "2022", event: "Expanded into DevOps & cloud consulting" },
-      { year: "2023", event: "Opened first international client office" },
-      { year: "2024", event: "Crossed 100+ successful project deliveries" }
-    ].map((milestone, idx) => (
-      <Grid item xs={12} sm={6} md={4} key={idx}>
-        <Card elevation={2} sx={{ p: 3 }}>
-          <Typography variant="h6" fontWeight="bold" color="primary">
-            {milestone.year}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {milestone.event}
-          </Typography>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Box>
-{/* Tech Stack */}
-<Box mb={10}>
-  <Typography variant="h4" textAlign="center" fontWeight="bold" gutterBottom>
-    Our Technology Stack
-  </Typography>
-  <Grid container spacing={3} justifyContent="center" mt={3}>
-    {[
-      "React",
-      "Node.js",
-      "Next.js",
-      "Python",
-      "Django",
-      "Firebase",
-      "MongoDB",
-      "PostgreSQL",
-      "Docker",
-      "AWS",
-      "Azure",
-      "GitHub Actions"
-    ].map((tech, i) => (
-      <Grid item key={i}>
-        <Card sx={{ px: 3, py: 2, borderRadius: 2 }}>
-          <Typography fontWeight="bold">{tech}</Typography>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Box>
+
+
 
 
       </Container>

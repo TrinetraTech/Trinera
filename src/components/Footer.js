@@ -37,10 +37,10 @@ const Footer = () => {
           </Typography>
           <Box display="flex" gap={1}>
           {[
-            { icon: Facebook, url: 'https://facebook.com/yourpage' },
-            { icon: Twitter, url: 'https://twitter.com/yourhandle' },
-            { icon: Instagram, url: 'https://instagram.com/yourprofile' },
-            { icon: LinkedIn, url: 'https://linkedin.com/in/yourprofile' },
+            { icon: Facebook, url: 'https://www.facebook.com/share/1BwAUQB4Rb/' },
+            { icon: Twitter, url: 'https://x.com/trinetrtech' },
+            { icon: Instagram, url: 'https://www.instagram.com/trinetrtech/?hl=en' },
+            { icon: LinkedIn, url: 'https://www.linkedin.com/in/trinetra-tech-827061365/' },
           ].map(({ icon: SocialIcon, url }, index) => (
             <a key={index} href={url} target="_blank" rel="noopener noreferrer">
               <IconButton color="inherit" size="small">
@@ -56,8 +56,8 @@ const Footer = () => {
       title: 'Quick Links',
       links: [
         { text: 'Home', href: '#' },
-        { text: 'Properties', href: '#featured-properties' },
-        { text: 'Why Choose Us', href: '#why-choose-us' },
+        { text: 'Services', href: '#featured-properties' },
+        { text: 'About Us', href: '#why-choose-us' },
         { text: 'Testimonials', href: '#testimonials' },
         { text: 'Contact', href: '#contact' }
       ]
@@ -65,10 +65,10 @@ const Footer = () => {
     {
       title: 'Our Services',
       links: [
-        { text: 'Luxury Property Listings', href: '#' },
-        { text: 'Property Management', href: '#' },
-        { text: 'Investment Consulting', href: '#' },
-        { text: 'Market Analysis', href: '#' }
+        { text: 'Business Websites', href: '#' },
+        { text: 'Android App Development', href: '#' },
+        { text: 'Web App Development', href: '#' },
+        { text: 'E-Commerce Platform', href: '#' }
       ]
     }
   ];
@@ -82,7 +82,7 @@ const Footer = () => {
         </svg>
       ),
       title: 'Address',
-      text: '123 Luxury Lane, New York, NY 10001'
+      text: 'Ashok Nagar, Kankarhbagh, Patna (800020)'
     },
     {
       icon: (
@@ -91,7 +91,7 @@ const Footer = () => {
         </svg>
       ),
       title: 'Phone',
-      text: '+91999999999'
+      text: '+91 9304493057, +91 6207665438, +91 9955748811'
     },
     {
       icon: (
@@ -100,7 +100,7 @@ const Footer = () => {
         </svg>
       ),
       title: 'Email',
-      text: 'info@luxestate.com'
+      text: ' trinetrtech@gmail.com'
     }
   ];
 
