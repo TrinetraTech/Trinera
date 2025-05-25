@@ -285,7 +285,7 @@ const Footer = () => {
           position: 'relative', 
           overflow: 'hidden', 
           height: { xs: 180, sm: 240, md: 250 },
-          width:{xs:380,sm:700,md:700},
+          width:{xs:380,sm:600,md:700},
           borderRadius: { xs: 1, md: 1 } // Remove border radius on mobile for full-width look
         }}>
           <CardMedia
@@ -307,59 +307,72 @@ const Footer = () => {
 </Box>
 
     {/* Contact Info */}
-    <Box sx={{ 
-      py: 4, 
-      borderTop: '1px solid #2e2e2e',
-      width: '100%'
-    }}>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box sx={{ 
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            justifyContent: { md: 'space-between' },
-            gap: { xs: 3, md: 0 },
-            width: '100%'
-          }}>
-            {contactInfo.map((info, index) => (
-              <Box 
-                key={index} 
+    <Box 
+  sx={{ 
+    py: 4, 
+    borderTop: '1px solid',
+    borderColor: ' #2e2e2e',
+    width: '100%',
+    px: { xs: 2, sm: 3, md: 0 } // Responsive horizontal padding
+  }}
+>
+  <Grid container justifyContent="center">
+    <Grid item xs={12} md={10} lg={8}> {/* Constrain width on larger screens */}
+      <Box 
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: { sm: 'space-between' },
+          alignItems: { xs: 'flex-start', sm: 'center' },
+          gap: { xs: 3, sm: 2, md: 3 },
+          flexWrap: 'wrap'
+        }}
+      >
+        {contactInfo.map((info, index) => (
+          <Box 
+            key={index} 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'flex-start',
+              width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'auto' },
+              maxWidth: { md: 300 }
+            }}
+          >
+            <Box sx={{ 
+              flexShrink: 0, 
+              mt: 0.5,
+              color: 'text.paper'
+            }}>
+              <Icon sx={{ fontSize: { xs: 20, sm: 24 } }}>{info.icon}</Icon>
+            </Box>
+            <Box sx={{ ml: 2 }}>
+              <Typography 
+                variant="subtitle2" 
                 sx={{ 
-                  display: 'flex', 
-                  alignItems: 'flex-start',
-                  width: { xs: '100%', md: 'auto' }
+                  fontWeight: 600, 
+                  color: 'text.paper',
+                  lineHeight: 1.2
                 }}
               >
-                <Box sx={{ flexShrink: 0, mt: 0.5 }}>
-                  <Icon sx={{ fontSize: 24, color: 'neutral.400' }}>{info.icon}</Icon>
-                </Box>
-                <Box sx={{ ml: 2 }}>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontWeight: 'medium', 
-                      color: 'white',
-                      fontSize: { xs: '0.9375rem', sm: '1rem' }
-                    }}
-                  >
-                    {info.title}
-                  </Typography>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: 'neutral.400',
-                      fontSize: { xs: '0.8125rem', sm: '0.875rem' }
-                    }}
-                  >
-                    {info.text}
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
+                {info.title}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  color: 'text.paper',
+                  mt: 0.5,
+                  fontSize: { xs: '0.8125rem', sm: '0.875rem' }
+                }}
+              >
+                {info.text}
+              </Typography>
+            </Box>
           </Box>
-        </Grid>
-      </Grid>
-    </Box>
+        ))}
+      </Box>
+    </Grid>
+  </Grid>
+</Box>
 
     {/* Footer Bottom */}
     <Box sx={{
