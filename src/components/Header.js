@@ -16,16 +16,71 @@ import {
   ListItemIcon,
   ListItemText,
   MenuItem,
-  Menu
+  Menu,
+  Grow,
+  styled
 } from '@mui/material';
-import SettingsIcon from '@mui/icons-material/Settings'
+import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import mainLogo from '../assets/logo/mainLogo.jpg';
 import Swal from 'sweetalert2';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
-import { Link as ScrollLink } from "react-scroll";
+import { keyframes } from '@emotion/react';
 
+// Custom pulse animation
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`;
+
+// Custom hover animation
+const hoverEffect = keyframes`
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+`;
+
+// Styled components
+const AnimatedButton = styled(Button)(({ theme }) => ({
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    animation: `${hoverEffect} 0.5s ease`,
+    backgroundColor: theme.palette.primary.dark,
+  },
+}));
+
+const LogoContainer = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+});
+
+const NavButton = styled(Button)(({ theme }) => ({
+  position: 'relative',
+  '&:after': {
+    content: '""',
+    position: 'absolute',
+    width: '0',
+    height: '2px',
+    bottom: '0',
+    left: '0',
+    backgroundColor: theme.palette.primary.main,
+    transition: 'width 0.3s ease',
+  },
+  '&:hover:after': {
+    width: '100%',
+  },
+  '&.active:after': {
+    width: '100%',
+    backgroundColor: theme.palette.secondary.main,
+  },
+}));
 
 const navItems = [
   { label: 'Home', id: 'home' },
@@ -35,14 +90,29 @@ const navItems = [
   { label: 'Testimonials', id: 'testimonials' }
 ];
 
-
 const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [swalState, setswalState] = React.useState(false)
+  const [swalState, setswalState] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [scrolled, setScrolled] = React.useState(false);
   const open = Boolean(anchorEl);
+
+  // Handle scroll effect
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+    
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled]);
 
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -50,6 +120,18 @@ const Header = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      setMobileOpen(false);
+    }
+  };
+
   const logohandleclick = () => {
     if (!swalState) {
       Swal.fire({
@@ -59,43 +141,64 @@ const Header = () => {
         imageHeight: 300,
         showConfirmButton: false,
         background: 'transparent',
-        transition: '0.5s ease-in-out',
-        backdrop: true,
+        backdrop: `
+          rgba(0,0,0,0.7)
+          center top
+          no-repeat
+        `,
         didClose: () => {
-          setswalState(false); // Automatically reset state when popup closes
+          setswalState(false);
         }
       });
       setswalState(true);
     } else {
-      Swal.close(); // ← Add parentheses here
+      Swal.close();
       setswalState(false);
     }
   };
 
   const drawer = (
-
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', width: 250, mt: 2 }}>
-
-      
+    <Box sx={{ 
+      textAlign: 'center', 
+      width: '100%',
+      padding: '20px 0',
+      backgroundColor: 'rgba(255, 255, 255, 0.98)',
+      boxShadow: theme.shadows[4]
+    }}>
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.url} disablePadding>
-            <ListItemButton
-              component={NavLink}
-              to={item.url}
-              
-            >
-              <ScrollLink
-                to={item.id}
-                spy={true}
-                smooth={true}
-                duration={500}
-                offset={-64}
+        {navItems.map((item, index) => (
+          <Grow 
+            in={mobileOpen}
+            timeout={index * 150}
+            key={item.id}
+          >
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={() => scrollToSection(item.id)}
+                sx={{
+                  justifyContent: 'center',
+                  py: 2,
+                  '&:hover': {
+                    backgroundColor: theme.palette.action.hover,
+                  }
+                }}
               >
-                <Typography variant="body1">{item.label}</Typography>
-              </ScrollLink>
-            </ListItemButton>
-          </ListItem>
+                <Typography 
+                  variant="h6"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    fontWeight: 500,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      color: theme.palette.primary.main,
+                    }
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          </Grow>
         ))}
       </List>
     </Box>
@@ -107,10 +210,12 @@ const Header = () => {
         <AppBar
           position="fixed"
           sx={{
-            backgroundColor: "rgb(255 255 255 / var(--tw-bg-opacity, 1))",
+            backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 1)',
             px: 2,
-            boxShadow: 1,
-            zIndex: theme.zIndex.drawer + 1, // Ensure header stays above other content
+            boxShadow: scrolled ? theme.shadows[4] : 'none',
+            transition: 'all 0.3s ease',
+            backdropFilter: scrolled ? 'blur(8px)' : 'none',
+            zIndex: theme.zIndex.drawer + 1,
           }}
         >
           <Toolbar
@@ -119,17 +224,19 @@ const Header = () => {
               justifyContent: "space-between",
               alignItems: "center",
               flexWrap: "wrap",
+              transition: 'all 0.3s ease',
+              py: scrolled ? 1 : 2,
             }}
           >
-
             {/* Left - Brand Name */}
-            <Box
+            <LogoContainer
               component={Link}
               to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               sx={{
-
-                display: 'flex',
-                alignItems: 'center',
                 textDecoration: 'none'
               }}
             >
@@ -137,20 +244,30 @@ const Header = () => {
                 onClick={logohandleclick}
                 alt="Logo"
                 src={mainLogo}
-                sx={{ width: 32, height: 32, marginRight: 1 }}
+                sx={{ 
+                  width: scrolled ? 40 : 48, 
+                  height: scrolled ? 40 : 48, 
+                  marginRight: 1,
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    animation: `${pulse} 1s infinite`,
+                  }
+                }}
               />
               <Typography
                 variant="h6"
                 sx={{
-
                   color: 'black',
                   fontWeight: 'bold',
-                  fontFamily: '"Playfair Display", serif',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontSize: scrolled ? '1.1rem' : '1.25rem',
+                  transition: 'all 0.3s ease',
                 }}
               >
                 TrinetraTech
               </Typography>
-            </Box>
+            </LogoContainer>
+
             {/* Right - Menu / Navigation */}
             {isMobile ? (
               <IconButton
@@ -158,8 +275,15 @@ const Header = () => {
                 color="inherit"
                 aria-label="menu"
                 onClick={handleDrawerToggle}
+                sx={{ 
+                  color: "black",
+                  '&:hover': {
+                    animation: `${pulse} 0.5s ease`,
+                    backgroundColor: 'transparent',
+                  }
+                }}
               >
-                <MenuIcon sx={{ color: "black" }} />
+                <MenuIcon />
               </IconButton>
             ) : (
               <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -171,45 +295,49 @@ const Header = () => {
                   }}
                 >
                   {navItems.map((item) => (
-                    <ScrollLink
+                    <NavButton
                       key={item.id}
-                      to={item.id}
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                      offset={-64} // Offset to account for fixed header height
+                      onClick={() => scrollToSection(item.id)}
+                      sx={{
+                        color: "black",
+                        textTransform: "capitalize",
+                        fontFamily: '"Poppins", sans-serif',
+                        fontWeight: 500,
+                        fontSize: '1rem',
+                        '&:hover': {
+                          color: theme.palette.primary.main,
+                        }
+                      }}
                     >
-                      <Button
-                        key={item.url}
-                        component={NavLink}
-                        to={item.url}
-                        sx={{
-                          color: "black",
-                          textTransform: "capitalize",
-                          fontFamily: '"Roboto", sans-serif',
-                          "&.active": {
-                            fontWeight: "bold",
-                          },
-                        }}
-                      >
-                        {item.label}
-                      </Button>
-                    </ScrollLink>
+                      {item.label}
+                    </NavButton>
                   ))}
                 </Box>
-                <Button
+                <AnimatedButton
                   variant="contained"
+                  color="primary"
                   sx={{
-                    backgroundColor: 'black',
-                    fontFamily: '"Roboto", sans-serif',
-                    "&:hover": {
-                      backgroundColor: "grey.800",
-                    },
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 600,
+                    boxShadow: `0 4px 6px rgba(0, 0, 0, 0.1)`,
+                    '&:hover': {
+                      boxShadow: `0 6px 8px rgba(0, 0, 0, 0.15)`,
+                    }
                   }}
                 >
                   Get Started
-                </Button>
-                <IconButton sx={{ color: 'black' }} onClick={handleClick}>
+                </AnimatedButton>
+                <IconButton 
+                  sx={{ 
+                    color: 'black',
+                    '&:hover': {
+                      transform: 'rotate(45deg)',
+                      transition: 'transform 0.3s ease',
+                      backgroundColor: 'transparent',
+                    }
+                  }} 
+                  onClick={handleClick}
+                >
                   <SettingsIcon />
                 </IconButton>
 
@@ -225,28 +353,51 @@ const Header = () => {
                     vertical: 'top',
                     horizontal: 'right',
                   }}
+                  PaperProps={{
+                    elevation: 4,
+                    sx: {
+                      borderRadius: '12px',
+                      marginTop: '10px',
+                      minWidth: '180px',
+                    }
+                  }}
                 >
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem 
+                    onClick={handleClose}
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: theme.palette.action.hover,
+                      }
+                    }}
+                  >
                     <ListItemIcon>
-                      <ColorLensIcon fontSize="small" />
+                      <ColorLensIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText>Color Theme 1</ListItemText>
+                    <ListItemText primary="Day Mode" />
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem 
+                    onClick={handleClose}
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: theme.palette.action.hover,
+                      }
+                    }}
+                  >
                     <ListItemIcon>
-                      <ColorLensIcon fontSize="small" />
+                      <ColorLensIcon fontSize="small" color="secondary" />
                     </ListItemIcon>
-                    <ListItemText>Color Theme 2</ListItemText>
+                    <ListItemText primary="Dark Night" />
                   </MenuItem>
-                  {/* Add more color options later */}
                 </Menu>
               </Box>
             )}
           </Toolbar>
         </AppBar>
       </Box>
+      
       {/* Add padding to the main content to account for fixed header */}
-      <Toolbar /> {/* This creates space below the fixed header */}
+      <Toolbar />
+      
       {/* Mobile Drawer */}
       <Drawer
         anchor="top"
@@ -255,7 +406,10 @@ const Header = () => {
         ModalProps={{ keepMounted: true }}
         sx={{
           "& .MuiDrawer-paper": {
-            zIndex: theme.zIndex.appBar - 1, // Ensure drawer appears below app bar
+            zIndex: theme.zIndex.appBar - 1,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            backdropFilter: 'blur(8px)',
+            boxShadow: theme.shadows[4],
           },
         }}
       >
