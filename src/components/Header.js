@@ -373,7 +373,7 @@ const Header = () => {
                     <ListItemIcon>
                       <ColorLensIcon fontSize="small" color="primary" />
                     </ListItemIcon>
-                    <ListItemText primary="Day Mode" />
+                    <ListItemText primary="Light Mode" />
                   </MenuItem>
                   <MenuItem 
                     onClick={handleClose}
@@ -386,7 +386,7 @@ const Header = () => {
                     <ListItemIcon>
                       <ColorLensIcon fontSize="small" color="secondary" />
                     </ListItemIcon>
-                    <ListItemText primary="Dark Night" />
+                    <ListItemText primary="Dark Mode" />
                   </MenuItem>
                 </Menu>
               </Box>
