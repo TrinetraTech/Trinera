@@ -83,128 +83,131 @@ const Contact = () => {
 
       <Grid container spacing={6} alignItems="flex-start">
         {/* Contact Form */}
-        <Grid item xs={12} lg={4}>
-          <Paper elevation={1} sx={{ p: 4, bgcolor: "neutral.50", ml: 20 }}>
-            <Typography variant="h5" fontWeight="bold" gutterBottom>
-              Send Us a Message
-            </Typography>
+       <Grid item xs={12} lg={4} sx={{ px: { xs: 2, sm: 4, md: 6 } }}>
+  <Paper
+    elevation={1}
+    sx={{
+      p: { xs: 2, sm: 3, md: 4 },
+      bgcolor: "neutral.50",
+      ml: { xs: 0, lg: 4 }, // margin left only on large screens
+    }}
+  >
+    <Typography variant="h5" fontWeight="bold" gutterBottom>
+      Send Us a Message
+    </Typography>
 
-            <Box
-              component="form"
-              id="contact-form"
-              ref={formRef}
-              onSubmit={handleSubmit}
-              noValidate
-              autoComplete="off"
-              sx={{ mt: 2 }}
-            >
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Full Name"
-                    name="name"
-                    aria-label="Full Name"
-                    aria-required="true"
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    type="email"
-                    label="Email Address"
-                    name="email"
-                    aria-label="Email Address"
-                    aria-required="true"
-                    autoComplete="email"
-                  />
-                </Grid>
-              </Grid>
-
-              <Box mt={2}>
-                <TextField
-                  fullWidth
-                  required
-                  type="tel"
-                  label="Phone Number" // <-- this must be a string
-                  name="phone"
-                  aria-label="Phone Number"
-                  aria-required="true"
-                  autoComplete="tel"
-                  slotProps={{
-                    input: {
-                      pattern: "[0-9]*",
-                      inputMode: "numeric",
-                    },
-                  }}
-                />
-
-              </Box>
-
-              <Box mt={2}>
-                <FormControl fullWidth>
-                  <InputLabel id="subject-label">Subject</InputLabel>
-                  <Select
-                    labelId="subject-label"
-                    id="contact-subject"
-                    name="subject"
-                    label="Subject"
-                    defaultValue=""
-                  >
-                    <MenuItem value="">Select a subject</MenuItem>
-                    <MenuItem value="Buying a Property">Buying a Property</MenuItem>
-                    <MenuItem value="Selling a Property">Selling a Property</MenuItem>
-                    <MenuItem value="Renting a Property">Renting a Property</MenuItem>
-                    <MenuItem value="Property Investment">Property Investment</MenuItem>
-                    <MenuItem value="Other Inquiry">Other Inquiry</MenuItem>
-                  </Select>
-                </FormControl>
- </Box>
-
-             
-
-              <Box mt={2}>
-                <TextField
-                  fullWidth
-                  required
-                  multiline
-                  rows={4}
-                  label="Message"
-                  name="message"
-                  aria-label="Message"
-                  aria-required="true"
-
-                />
-              </Box>
-
-              <Box mt={2}>
-                <FormControlLabel
-                  control={<Checkbox name="newsletter" color="primary" />}
-                  label="Subscribe to our newsletter for market updates and exclusive property listings"
-                  aria-label="Message"
-                  aria-required="true"
-
-                />
-              </Box>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                endIcon={
-                  <SvgIcon>
-                    <path d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" />
-                  </SvgIcon>
-                }
-                sx={{ mt: 3, py: 1.5 }}
-              >
-                Send Message
-              </Button>
-            </Box>
-          </Paper>
+    <Box
+      component="form"
+      id="contact-form"
+      ref={formRef}
+      onSubmit={handleSubmit}
+      noValidate
+      autoComplete="off"
+      sx={{ mt: 2 }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            required
+            label="Full Name"
+            name="name"
+            aria-label="Full Name"
+            aria-required="true"
+          />
         </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            required
+            type="email"
+            label="Email Address"
+            name="email"
+            aria-label="Email Address"
+            aria-required="true"
+            autoComplete="email"
+          />
+        </Grid>
+      </Grid>
+
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          required
+          type="tel"
+          label="Phone Number"
+          name="phone"
+          aria-label="Phone Number"
+          aria-required="true"
+          autoComplete="tel"
+          slotProps={{
+            input: {
+              pattern: "[0-9]*",
+              inputMode: "numeric",
+            },
+          }}
+        />
+      </Box>
+
+      <Box mt={2}>
+        <FormControl fullWidth>
+          <InputLabel id="subject-label">Subject</InputLabel>
+          <Select
+            labelId="subject-label"
+            id="contact-subject"
+            name="subject"
+            label="Subject"
+            defaultValue=""
+          >
+            <MenuItem value="">Select a subject</MenuItem>
+            <MenuItem value="Buying a Property">Buying a Property</MenuItem>
+            <MenuItem value="Selling a Property">Selling a Property</MenuItem>
+            <MenuItem value="Renting a Property">Renting a Property</MenuItem>
+            <MenuItem value="Property Investment">Property Investment</MenuItem>
+            <MenuItem value="Other Inquiry">Other Inquiry</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          required
+          multiline
+          rows={4}
+          label="Message"
+          name="message"
+          aria-label="Message"
+          aria-required="true"
+        />
+      </Box>
+
+      <Box mt={2}>
+        <FormControlLabel
+          control={<Checkbox name="newsletter" color="primary" />}
+          label="Subscribe to our newsletter for market updates and exclusive property listings"
+          aria-label="Newsletter"
+        />
+      </Box>
+
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+        endIcon={
+          <SvgIcon>
+            <path d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" />
+          </SvgIcon>
+        }
+        sx={{ mt: 3, py: 1.5 }}
+      >
+        Send Message
+      </Button>
+    </Box>
+  </Paper>
+</Grid>
+
 
         {/* Contact Info and Image */}
         <Grid item xs={12} lg={8}>

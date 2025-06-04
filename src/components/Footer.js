@@ -328,118 +328,111 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        {/* Image Cards */}
-        <Box
-          sx={{
-            mb: 4,
-            mt: { xs: 12, md: 8 },
-            width: "100%",
-            overflow: "hidden",
-          }}
-        >
-          <Grid
-            container
-            spacing={{ xs: 0, md: 4 }}
-            sx={{ width: "100%", margin: 0 }}
-          >
-            {footerImages.map((image, index) => (
-              <Grid
-                item
-                xs={12}
-                md={6}
-                key={index}
-                sx={{
-                  padding: { xs: "0 !important", md: "inherit" },
-                  marginBottom: { xs: 2, md: 0 },
-                }}
-              >
-                <Card
-                  sx={{
-                    position: "relative",
-                    overflow: "hidden",
-                    height: { xs: 180, sm: 250, md: 250 },
-                    width: { xs: 380, sm: 700, md: 700 },
-                    borderRadius: { xs: 1, md: 1 }, // Remove border radius on mobile for full-width look
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={image.url}
-                    alt={image.alt}
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transition: "transform 0.5s",
-                      "&:hover": { transform: "scale(1.05)" },
-                    }}
-                  />
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+    {/* Image Cards */}
+    <Box sx={{ 
+  mb: 4, 
+  mt: { xs: 12, md: 8 },
+  width: '100%',
+  overflow: 'hidden'
+}}>
+  <Grid container spacing={{ xs: 0, md: 4 }} sx={{ width: '100%', margin: 0 }}>
+    {footerImages.map((image, index) => (
+      <Grid item xs={12} md={6} key={index} sx={{ 
+        padding: { xs: '0 !important', md: 'inherit' },
+        marginBottom: { xs: 2, md: 0 }
+      }}>
+        <Card sx={{ 
+          position: 'relative', 
+          overflow: 'hidden', 
+          height: { xs: 180, sm: 240, md: 250 },
+          width:{xs:380,sm:600,md:700},
+          borderRadius: { xs: 1, md: 1 } // Remove border radius on mobile for full-width look
+        }}>
+          <CardMedia
+            component="img"
+            image={image.url}
+            alt={image.alt}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.5s',
+              '&:hover': { transform: 'scale(1.05)' },
+            }}
+          />
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
 
-        {/* Contact Info */}
-        <Box
-          sx={{
-            py: 4,
-            borderTop: "1px solid #2e2e2e",
-            width: "100%",
-          }}
-        >
-          <Grid container>
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  justifyContent: { md: "space-between" },
-                  gap: { xs: 3, md: 0 },
-                  width: "100%",
+    {/* Contact Info */}
+    <Box 
+  sx={{ 
+    py: 4, 
+    borderTop: '1px solid',
+    borderColor: ' #2e2e2e',
+    width: '100%',
+    px: { xs: 2, sm: 3, md: 0 } // Responsive horizontal padding
+  }}
+>
+  <Grid container justifyContent="center">
+    <Grid item xs={12} md={10} lg={8}> {/* Constrain width on larger screens */}
+      <Box 
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: { sm: 'space-between' },
+          alignItems: { xs: 'flex-start', sm: 'center' },
+          gap: { xs: 3, sm: 2, md: 3 },
+          flexWrap: 'wrap'
+        }}
+      >
+        {contactInfo.map((info, index) => (
+          <Box 
+            key={index} 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'flex-start',
+              width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'auto' },
+              maxWidth: { md: 300 }
+            }}
+          >
+            <Box sx={{ 
+              flexShrink: 0, 
+              mt: 0.5,
+              color: 'text.paper'
+            }}>
+              <Icon sx={{ fontSize: { xs: 20, sm: 24 } }}>{info.icon}</Icon>
+            </Box>
+            <Box sx={{ ml: 2 }}>
+              <Typography 
+                variant="subtitle2" 
+                sx={{ 
+                  fontWeight: 600, 
+                  color: 'text.paper',
+                  lineHeight: 1.2
                 }}
               >
-                {contactInfo.map((info, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      width: { xs: "100%", md: "auto" },
-                    }}
-                  >
-                    <Box sx={{ flexShrink: 0, mt: 0.5 }}>
-                      <Icon sx={{ fontSize: 24, color: "neutral.400" }}>
-                        {info.icon}
-                      </Icon>
-                    </Box>
-                    <Box sx={{ ml: 2 }}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          fontWeight: "medium",
-                          color: "white",
-                          fontSize: { xs: "0.9375rem", sm: "1rem" },
-                        }}
-                      >
-                        {info.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "neutral.400",
-                          fontSize: { xs: "0.8125rem", sm: "0.875rem" },
-                        }}
-                      >
-                        {info.text}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
+                {info.title}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  color: 'text.paper',
+                  mt: 0.5,
+                  fontSize: { xs: '0.8125rem', sm: '0.875rem' }
+                }}
+              >
+                {info.text}
+              </Typography>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Grid>
+  </Grid>
+</Box>
 
         {/* Footer Bottom */}
         <Box
