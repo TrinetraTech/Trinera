@@ -455,7 +455,7 @@ const Footer = () => {
               textAlign: { xs: "center", sm: "left" },
             }}
           >
-            &copy; 2023 LuxEstate. All rights reserved.
+            &copy; 2025 TrinetraTech. All rights reserved.
           </Typography>
 
           <Box
